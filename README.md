@@ -38,8 +38,6 @@
 
 ##  Hướng dẫn cài đặt và chạy trên máy mới (Setup Guide)
 
-Nếu bạn hoặc thành viên trong nhóm muốn tải project về máy để chạy:
-
 ### 1. Clone repository về máy
 ```bash
 git clone https://github.com/0melett3-2/<tên-repo>.git
@@ -56,6 +54,7 @@ Do file `local.properties` chứa khóa bí mật đã được ẩn khỏi Git 
 TMDB_API_KEY=your_tmdb_api_key_here
 ```
 *(Bạn có thể lấy API Key miễn phí bằng cách đăng ký tài khoản tại [themoviedb.org](https://www.themoviedb.org/settings/api)).*
+*Trong trường hợp không thể lấy API Key, app hoàn toàn có thể chạy trong lần đầu clone vì đã có API Key backup.*
 
 ### 4. Build và Run
 * Chọn thiết bị máy ảo (Emulator) hoặc điện thoại thật (bật USB Debugging).
