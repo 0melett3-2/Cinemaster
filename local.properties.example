@@ -1,0 +1,5 @@
+# Template file cấu hình môi trường cục bộ (local.properties)
+# File này được theo dõi trên Git để hướng dẫn người mới pull dự án về.
+# Hãy sao chép nội dung dòng bên dưới vào file `local.properties` trên máy của bạn:
+
+TMDB_API_KEY=your_tmdb_api_key_here
