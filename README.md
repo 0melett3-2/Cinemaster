@@ -1,10 +1,10 @@
-# 🎬 Cinemaster - Personal Movie Tracker
+#  Cinemaster - Personal Movie Tracker
 
 Ứng dụng Android hiện đại theo dõi danh sách phim cá nhân, kết nối trực tiếp với cơ sở dữ liệu phim trực tuyến **The Movie Database (TMDB)** và lưu trữ dữ liệu ngoại tuyến qua **Room Database**.
 
 ---
 
-## ✨ Tính năng nổi bật
+##  Tính năng nổi bật
 
 * **🎬 Giao diện chuẩn Cinematic (Jetpack Compose & Material 3):**
   * Hỗ trợ 2 chế độ hiển thị: Dạng lưới Poster rạp chiếu (Grid 2 cột) và Dạng danh sách chi tiết (List).
@@ -24,7 +24,7 @@
 
 ---
 
-## 🛠️ Công nghệ sử dụng (Tech Stack)
+##  Công nghệ sử dụng (Tech Stack)
 
 * **Ngôn ngữ:** Kotlin
 * **Giao diện:** 100% Jetpack Compose, Material 3, Navigation Compose
@@ -36,7 +36,7 @@
 
 ---
 
-## 🚀 Hướng dẫn cài đặt và chạy trên máy mới (Setup Guide)
+##  Hướng dẫn cài đặt và chạy trên máy mới (Setup Guide)
 
 Nếu bạn hoặc thành viên trong nhóm muốn tải project về máy để chạy:
 
