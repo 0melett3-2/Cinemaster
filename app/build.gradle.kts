@@ -27,7 +27,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField(
             "String", "TMDB_API_KEY",
-            "\"${localProps.getProperty("TMDB_API_KEY", "")}\""
+            "\"${localProps.getProperty("TMDB_API_KEY", "088763ae439518ec3c0a183522aba202")}\""
         )
     }
 
