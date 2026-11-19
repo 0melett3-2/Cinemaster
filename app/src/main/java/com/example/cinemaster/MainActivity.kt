@@ -18,16 +18,42 @@ class MainActivity : ComponentActivity() {
         setContent {
             CinemasterTheme {
                 val nav = rememberNavController()
-                NavHost(navController = nav, startDestination = "home") {
-                    composable("home") {
-                        HomeScreen(
-                            onMovieClick = { id -> nav.navigate("detail/$id") },
-                            onSearchClick = { nav.navigate("search") }
+                val app = application as CinemasterApp
+
+                // Nếu đã đăng nhập hoặc dùng khách → vào thẳng Home
+                val startDestination = if (app.authRepository.isAuthenticated) "home" else "auth"
+
+                NavHost(navController = nav, startDestination = startDestination) {
+
+                    composable("auth") {
+                        AuthScreen(
+                            onAuthenticated = {
+                                nav.navigate("home") {
+                                    popUpTo("auth") { inclusive = true }
+                                }
+                            }
                         )
                     }
+
+                    composable("home") {
+                        HomeScreen(
+                            userName = app.authRepository.currentUserName,
+                            isGuest = app.authRepository.isGuest,
+                            onMovieClick = { id -> nav.navigate("detail/$id") },
+                            onSearchClick = { nav.navigate("search") },
+                            onLogout = {
+                                app.authRepository.logout()
+                                nav.navigate("auth") {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                            }
+                        )
+                    }
+
                     composable("search") {
                         SearchScreen(onBack = { nav.popBackStack() })
                     }
+
                     composable(
                         route = "detail/{id}",
                         arguments = listOf(navArgument("id") { type = NavType.IntType })

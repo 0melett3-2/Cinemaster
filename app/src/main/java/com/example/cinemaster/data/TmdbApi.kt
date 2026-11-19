@@ -14,8 +14,9 @@ data class MovieDto(
     @SerializedName("release_date") val releaseDate: String?
 )
 
-fun MovieDto.toMovie() = Movie(
+fun MovieDto.toMovie(userId: Int = 0) = Movie(
     id = id,
+    userId = userId,
     title = title ?: "Không có tên",
     posterPath = posterPath,
     overview = overview ?: ""

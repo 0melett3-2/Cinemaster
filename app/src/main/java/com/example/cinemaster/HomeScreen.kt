@@ -1,4 +1,4 @@
-package com.example.cinemaster
+﻿package com.example.cinemaster
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.Casino
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material.icons.filled.Movie
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -51,8 +52,11 @@ private fun List<Movie>.applyFilter(query: String, sortIndex: Int): List<Movie> 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    userName: String = "",
+    isGuest: Boolean = false,
     onMovieClick: (Int) -> Unit,
     onSearchClick: () -> Unit,
+    onLogout: () -> Unit = {},
     vm: MovieListViewModel = viewModel(factory = MovieListViewModel.Factory)
 ) {
     var tab by rememberSaveable { mutableIntStateOf(0) }
@@ -74,18 +78,27 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = Icons.Default.Movie,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(
-                            text = "Cinemaster",
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold
-                        )
+                    Column {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.Movie,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                text = "Cinemaster",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        if (userName.isNotBlank()) {
+                            Text(
+                                text = if (isGuest) "Khách" else userName,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
                     }
                 },
                 actions = {
@@ -99,6 +112,10 @@ fun HomeScreen(
                     // Nút tìm kiếm nhanh
                     IconButton(onClick = onSearchClick) {
                         Icon(Icons.Default.Search, contentDescription = "Tìm phim")
+                    }
+                    // Nỹt đăng xuất
+                    IconButton(onClick = onLogout) {
+                        Icon(Icons.AutoMirrored.Filled.Logout, contentDescription = "Đăng xuất")
                     }
                 }
             )

@@ -1,4 +1,4 @@
-package com.example.cinemaster
+﻿package com.example.cinemaster
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -28,7 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.cinemaster.data.MovieStatus
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun DetailScreen(
     movieId: Int,
@@ -51,6 +51,8 @@ fun DetailScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .imePadding()
+                        .imeNestedScroll()
                         .padding(bottom = padding.calculateBottomPadding())
                         .verticalScroll(rememberScrollState())
                 ) {
@@ -181,7 +183,7 @@ fun DetailScreen(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                MovieStatus.values().forEach { s ->
+                                MovieStatus.entries.forEach { s ->
                                     FilterChip(
                                         selected = m.status == s,
                                         onClick = { vm.setStatus(m, s) },
@@ -281,6 +283,7 @@ fun DetailScreen(
                             Spacer(Modifier.width(8.dp))
                             Text("Xóa khỏi danh sách")
                         }
+                        Spacer(Modifier.height(32.dp))
                     }
                 }
 

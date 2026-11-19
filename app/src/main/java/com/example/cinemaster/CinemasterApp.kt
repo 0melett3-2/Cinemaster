@@ -2,6 +2,7 @@ package com.example.cinemaster
 
 import android.app.Application
 import com.example.cinemaster.data.AppDatabase
+import com.example.cinemaster.data.AuthRepository
 import com.example.cinemaster.data.MovieRepository
 import com.example.cinemaster.data.TmdbApi
 import retrofit2.Retrofit
@@ -17,7 +18,11 @@ class CinemasterApp : Application() {
             .create(TmdbApi::class.java)
     }
 
+    val authRepository by lazy {
+        AuthRepository(AppDatabase.get(this).userDao(), this)
+    }
+
     val repository by lazy {
-        MovieRepository(AppDatabase.get(this).movieDao(), api)
+        MovieRepository(AppDatabase.get(this).movieDao(), api, authRepository)
     }
 }
